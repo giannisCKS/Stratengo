@@ -1,7 +1,10 @@
 package com.bocktrow.stratengo;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainWindow extends JFrame {
 
@@ -16,13 +19,17 @@ public class MainWindow extends JFrame {
             ImageIcon icon = createImageIcon("asset/bluePieces/elfB.png", "elfB");
             Image sized = icon.getImage().getScaledInstance(900 / 10, 900 / 8, Image.SCALE_SMOOTH);
             ImageIcon resized = new ImageIcon(sized);
-            JButton jButton = new JButton("" + i);
+            final JButton jButton = new JButton(resized);
+            jButton.setBackground(Color.WHITE);
+            jButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    jButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.GREEN, Color.GREEN));
+                }
+            });
 
-            if (i == 33 || i == 34 || i == 43 || i == 44 || i == 37 || i == 38 || i == 47 || i == 48) {
-                jButton.setEnabled(false);
-            } else {
-                jButton = new JButton(resized);
-            }
+
+            if (i == 33 || i == 34 || i == 43 || i == 44 || i == 37 || i == 38 || i == 47 || i == 48) jButton.setEnabled(false);
 
             add(jButton);
 
